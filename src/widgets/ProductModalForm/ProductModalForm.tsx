@@ -34,13 +34,13 @@ const ProductModalForm = ({ product, onClose, onSave }: Props) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm p-4">
-      <form 
-        onSubmit={handleSubmit} 
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-xs p-4">
+      <form
+        onSubmit={handleSubmit}
         className="w-full max-w-md bg-secondary border border-border rounded-2xl p-6 shadow-xl flex flex-col gap-4"
       >
         <h2 className="text-lg font-bold font-mono text-primary uppercase">
-          {product.name ? "Edit" : "Create"}
+          {product.name !== "Новый продукт"  ? `Edit - ${product.name}` : "Create"}
         </h2>
 
         <div className="flex flex-col gap-1">
@@ -51,7 +51,7 @@ const ProductModalForm = ({ product, onClose, onSave }: Props) => {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full bg-background border border-border rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-primary"
+            className="modalInputField"
           />
         </div>
 
@@ -64,8 +64,7 @@ const ProductModalForm = ({ product, onClose, onSave }: Props) => {
               value={formData.price || ""}
               onChange={handleChange}
               min="0"
-              className="w-full bg-background border border-border rounded-xl px-3 py-2 text-sm focus:outline-none"
-            />
+              className="modalInputField" />
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-xs font-medium text-muted-foreground">Calories</label>
@@ -75,8 +74,7 @@ const ProductModalForm = ({ product, onClose, onSave }: Props) => {
               value={formData.calories || ""}
               onChange={handleChange}
               min="0"
-              className="w-full bg-background border border-border rounded-xl px-3 py-2 text-sm focus:outline-none"
-            />
+              className="modalInputField" />
           </div>
         </div>
 
@@ -90,8 +88,7 @@ const ProductModalForm = ({ product, onClose, onSave }: Props) => {
               onChange={handleChange}
               min="0"
               step="0.1"
-              className="w-full bg-background border border-border rounded-xl px-2 py-1.5 text-sm text-center focus:outline-none"
-            />
+              className="modalInputField" />
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-xs font-medium text-muted-foreground text-center">Fats</label>
@@ -102,8 +99,7 @@ const ProductModalForm = ({ product, onClose, onSave }: Props) => {
               onChange={handleChange}
               min="0"
               step="0.1"
-              className="w-full bg-background border border-border rounded-xl px-2 py-1.5 text-sm text-center focus:outline-none"
-            />
+              className="modalInputField" />
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-xs font-medium text-muted-foreground text-center">Carbs</label>
@@ -114,8 +110,7 @@ const ProductModalForm = ({ product, onClose, onSave }: Props) => {
               onChange={handleChange}
               min="0"
               step="0.1"
-              className="w-full bg-background border border-border rounded-xl px-2 py-1.5 text-sm text-center focus:outline-none"
-            />
+              className="modalInputField" />
           </div>
         </div>
 

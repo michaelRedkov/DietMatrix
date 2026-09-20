@@ -12,7 +12,7 @@ export type Product = {
 
 type ProductState = {
     products: Product[];
-    addProduct: () => string;
+    addProduct: (initialData?: Partial<Product>) => string;
     updateProduct: (id: string, updatedProduct: Partial<Product>) => void;
     removeProduct: (id: string) => void;
     clearProducts: () => void;

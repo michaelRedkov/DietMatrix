@@ -29,7 +29,34 @@ const UserStatsComp = () => {
 
             <ToggleThemeBtn />
 
-            <p className="my-4 max-w-90"><span className='text-chart-3 font-bold'>TDEE</span> ー total number of calories your body burns in 24 hours, including all your daily activities, workouts, and basic bodily functions.</p>
+            <p className="my-4 px-2 max-w-90">
+                <span className='text-chart-3 font-bold'>TDEE </span>
+                <span className='font-extralight text-sm'>
+                    (Total Daily Energy Expenditure)</span> ー total number of calories your body burns in 24 hours, including all your daily activities, workouts, and basic bodily functions.
+            </p>
+
+            <p className="my-4 px-2 max-w-90">
+                <span className='text-primary font-bold'>BMR </span>
+                <span className='font-extralight text-sm'>
+                    (Basal Metabolic Rate)</span> ー  is the minimum number of calories your body needs to stay alive while at complete rest.
+            </p>
+
+            <div className=' flex flex-col border border-border rounded-2xl p-2 my-4 text bg-muted inset-shadow-sm max-w-100'>
+                <p className=' font'>
+                    <span className=' text-primary font-bold'>BMR </span>
+                    = 10×weight (kg)+6.25×height (cm)−5×age (years) <span className='text-chart-2 italic'> +5 (for men) OR -161 (for women) </span> 
+                </p>
+
+                <ul className='text my-4'>
+                    <span className='text-chart-3 font-bold'>TDEE = </span>
+                    <li className='listItem'>Sedentary: BMR × 1.2</li>
+                    <li className='listItem'>Lightly active: BMR × 1.375</li>
+                    <li className='listItem'>Moderately active: BMR × 1.55</li>
+                    <li className='listItem'>Very active: BMR × 1.725</li>
+                    <li className='listItem'>Super active: BMR × 1.9</li>
+                </ul>
+            </div>
+            
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className='flex flex-col border-t border-border '>
@@ -66,7 +93,7 @@ const UserStatsComp = () => {
                     Height:
                     <input {...register('height', {
                         required: 'Height is required',
-                        min: { value: 75, message: 'Too short' } // Для чисел лучше использовать min вместо minLength
+                        min: { value: 75, message: 'Too short' }
                     })}
                         placeholder='cm'
                         type="number" className='inputField' />
@@ -121,7 +148,7 @@ const UserStatsComp = () => {
                     </select>
                 </label>
 
-                <button type="submit" disabled={isSubmitting} className='submitBtn group'>
+                <button type="submit" disabled={isSubmitting} className='submitBtn group uppercase tracking-wider'>
                     Calculate
                 </button>
             </form>

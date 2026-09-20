@@ -27,14 +27,15 @@ const ProductItem = ({ name, price, calories, proteins, fats, carbs, id, onEdit 
     return (
     <div
     onClick={onEdit} 
+    title={name}
     className="relative grid grid-cols-[1fr_auto] items-center gap-y-2 bg-secondary cursor-pointer
     border border-border rounded-2xl p-4 shadow-sm hover:shadow-md transition-all my-2 sm:flex sm:justify-between">
       
       <span className="absolute font-light text-[10px] text-chart-3 -top-2.5 left-4 bg-secondary rounded-full px-2 border border-border shadow select-none">
-        {price} <span className="not-italic">₽</span> / г
+        {price} <span className="not-italic">₽</span> / g
       </span>
 
-      <h3 className="font-mono text-sm font-semibold truncate pr-2 min-w-20 max-w-20 sm:max-w-20" title={name}>
+      <h3 className="font-mono text-sm font-semibold truncate pr-2 min-w-20 max-w-20 sm:max-w-20">
         {name}
       </h3>
 

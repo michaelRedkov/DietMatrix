@@ -16,7 +16,7 @@ type MacroStrategy = {
 
 const ProductTable = () => {
 
-    const tableRef = useRef<HTMLInputElement>(null);
+    const tableRef = useRef<HTMLDivElement>(null);
 
     const { products, addProduct, clearProducts, updateProduct } = useProductStore();
 
@@ -27,11 +27,17 @@ const ProductTable = () => {
     const [error, setError] = useState<string | null>(null);
 
     const handleAddProduct = () => {
-        const newId = addProduct();
-        const newProduct = useProductStore.getState().products.find(p => p.id === newId);
-        if (newProduct) {
-            setEditingProduct(newProduct); //FORM
-        }
+        //
+        const draftProduct: Product = {
+            id: "NEW_PRODUCT",
+            name: "Новый продукт",
+            price: 0,
+            calories: 0,
+            proteins: 0,
+            fats: 0,
+            carbs: 0,
+        };
+        setEditingProduct(draftProduct);
     };
 
     const handleCalculate = () => {
@@ -56,9 +62,7 @@ const ProductTable = () => {
 
         setError(null);
         setShowResults(true);
-
     };
-
 
     //REWRITE
 
@@ -110,11 +114,14 @@ const ProductTable = () => {
 
     return (
         <div className="blockContainer flex flex-col justify-center items-center">
-            <div className="flex justify-center gap-1 w-50" >
-                <button type="button" className="flex items-center gap-1 border border-border rounded-2xl px-2 hover:shadow-sm cursor-pointer" onClick={clearProducts}>
-                    <Trash size={16} /> Clear table
-                </button>
-            </div>
+            {products.length > 0 && (
+                <div className="flex justify-center gap-1 w-50" >
+                    <button type="button" className="flex items-center gap-1 border border-border rounded-2xl px-2 hover:shadow-sm cursor-pointer" onClick={clearProducts}>
+                        <Trash size={16} /> Clear table
+                    </button>
+                </div>
+            )}
+
             {
                 products.map((product) => (
                     <ProductItem
@@ -222,7 +229,14 @@ const ProductTable = () => {
                 <ProductModalForm
                     product={editingProduct}
                     onClose={() => setEditingProduct(null)}
-                    onSave={updateProduct}
+                    onSave={(id, updatedData) => {
+                        if (id === "NEW_PRODUCT") {
+                            addProduct(updatedData);
+                        } else {
+                            updateProduct(id, updatedData);
+                        }
+                        setEditingProduct(null);
+                    }}
                 />
             )}
 

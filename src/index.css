@@ -27,6 +27,14 @@
     @apply flex justify-center border border-border w-full rounded-4xl cursor-pointer inset-shadow-sm font-bold my-2
     hover:text-primary hover:bg-secondary hover:inset-shadow-background hover:border-primary transition-all
   }
+
+  .listItem{
+    @apply border-b border-border
+  }
+  
+  .modalInputField{
+    @apply w-full bg-background border border-border rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-primary
+  }
 }
 
 :root {
